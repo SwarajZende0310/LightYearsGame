@@ -1,9 +1,10 @@
 #include<iostream>
+#include<memory>
 #include<SFML/Graphics.hpp>
-#include<SFML/System.hpp>
-#include<SFML/Window.hpp>
+
+#include"framework/Application.h"
 
 int main(){
-    sf::RenderWindow renderWindow(sf::VideoMode({800, 600}), "My window");
-    std::cout<<"Hello World\n"<<std::endl;
+    std::unique_ptr<ly::Application> app = std::make_unique<ly::Application>();
+    app->Run();
 }
