@@ -15,7 +15,7 @@ set(SFML_LIB_NAME SFML)
 FetchContent_Declare(
         ${SFML_LIB_NAME}
         GIT_REPOSITORY https://github.com/SFML/SFML.git
-        GIT_TAG 3.0.0
+        GIT_TAG 2.5.1
         GIT_SHALLOW FALSE
 )
 
