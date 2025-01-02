@@ -13,7 +13,7 @@ namespace ly
             void RenderInternal();
 
             virtual void Render();
-            virtual void Tick(flaot deltaTIme);
+            virtual void Tick(float deltaTIme);
 
             sf::RenderWindow mWindow;
             float mTargetFrameRate;
