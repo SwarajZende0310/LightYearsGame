@@ -6,7 +6,8 @@ namespace ly
     Application::Application()
         :mWindow(sf::VideoMode({1024, 1440}), "Light Years"),
         mTargetFrameRate(60.f),
-        mTickClock()
+        mTickClock(),
+        currentWorld(nullptr)
     {
         
     }
@@ -38,13 +39,17 @@ namespace ly
                 TickInternal(targetDeltaTime);
                 RenderInternal();
             }
-            LOG("ticking at framerate: %f \n",1.f/frameDeltaTime);
         }
     }
 
     void Application::TickInternal(float deltaTime)
     {
         Tick(deltaTime);
+
+        if(currentWorld)
+        {
+            currentWorld->TickInternal(deltaTime);
+        }
     }
 
     void Application::RenderInternal()
@@ -68,7 +73,6 @@ namespace ly
 
     void Application::Tick(float deltaTime)
     {
-        // std::cout<<"ticking at framerate: "<< 1.f/deltaTime <<std::endl;
-        LOG("ticking at framerate: %f \n",1.f/deltaTime);
+        // LOG("ticking at framerate: %f \n",1.f/deltaTime);
     }
 }
