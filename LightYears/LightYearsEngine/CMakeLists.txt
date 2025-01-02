@@ -4,6 +4,9 @@ add_library(${LIGHT_YEARS_ENGINE_TARGET_NAME} STATIC
     
     ${CMAKE_CURRENT_SOURCE_DIR}/include/EntryPoint.h
     ${CMAKE_CMAKE_CURRENT_SOURCE_DIR}src/EntryPoint.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Core.h
+    ${CMAKE_CMAKE_CURRENT_SOURCE_DIR}src/framework/Core.cpp
 )
 
 target_include_directories(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC 

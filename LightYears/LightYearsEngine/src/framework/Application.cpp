@@ -1,5 +1,5 @@
-#include<iostream>
 #include "framework/Application.h"
+#include "framework/Core.h"
 
 namespace ly
 {
@@ -28,7 +28,9 @@ namespace ly
                 }
             }
 
-            accumalatedTime += mTickClock.restart().asSeconds();//Calculating the time elapsed before rendering
+            // accumalatedTime += mTickClock.restart().asSeconds();//Calculating the time elapsed before rendering
+            float frameDeltaTime = mTickClock.restart().asSeconds();
+            accumalatedTime += frameDeltaTime;
             
             while(accumalatedTime > targetDeltaTime)//Rendering only to achieve det frame rate
             {
@@ -36,6 +38,7 @@ namespace ly
                 TickInternal(targetDeltaTime);
                 RenderInternal();
             }
+            LOG("ticking at framerate: %f \n",1.f/frameDeltaTime);
         }
     }
 
@@ -66,5 +69,6 @@ namespace ly
     void Application::Tick(float deltaTime)
     {
         // std::cout<<"ticking at framerate: "<< 1.f/deltaTime <<std::endl;
+        LOG("ticking at framerate: %f \n",1.f/deltaTime);
     }
 }
