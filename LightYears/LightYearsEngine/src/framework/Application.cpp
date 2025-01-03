@@ -3,8 +3,8 @@
 
 namespace ly
 {
-    Application::Application()
-        :mWindow(sf::VideoMode({1024, 1440}), "Light Years"),
+    Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string & title,sf::Uint32 style)
+        :mWindow(sf::VideoMode({windowWidth, windowHeight}), title, style),
         mTargetFrameRate(60.f),
         mTickClock(),
         currentWorld(nullptr)
