@@ -4,10 +4,12 @@
 
 namespace ly
 {
-    Actor::Actor(World* owningWorld):
-    mHasBeganPlay(false)
+    Actor::Actor(World* owningWorld, const std::string& texturePath):
+        mHasBeganPlay(false),
+        mSprite(),
+        mTexture()
     {
-
+        SetTexture(texturePath);
     }
 
     Actor::~Actor()
@@ -24,6 +26,13 @@ namespace ly
         }
     }
 
+    void Actor::TickInternal(float deltaTime)
+    {
+        if(!IsPendingDestroy())
+        {
+            Tick(deltaTime);
+        }
+    }
     void Actor::BeginPlay()
     {
         LOG("Actor Began Play");
@@ -32,5 +41,22 @@ namespace ly
     void Actor::Tick(float deltaTime)
     {
         LOG("Actor Ticking");
+    }
+
+    void Actor::SetTexture(const std::string &texturePath)
+    {
+        mTexture.loadFromFile(texturePath);
+        mSprite.setTexture(mTexture);
+        
+        int textureWidth = mTexture.getSize().x;
+        int textureHeight = mTexture.getSize().y;
+        mSprite.setTextureRect(sf::IntRect{sf::Vector2i{},sf::Vector2i{textureWidth,textureHeight}});
+    }
+    void Actor::Render(sf::RenderWindow &window)
+    {
+        if(IsPendingDestroy())
+            return;
+
+        window.draw(mSprite); 
     }
 }
