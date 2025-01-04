@@ -1,4 +1,4 @@
-#include"framework/AssetManager.h"
+#include"framework/AssetManager.h" 
 
 namespace ly
 {
@@ -27,6 +27,22 @@ namespace ly
         }
 
         return shared<sf::Texture> {nullptr};//Invalid Path
+    }
+
+    void AssetManager::CleanCycle()// Delete a loaded texture if not used by anyone except asset manager
+    {
+        for(auto iter = mLoadedextureMap.begin();iter!=mLoadedextureMap.end();)
+        {
+            if(iter->second.unique())
+            {
+                LOG("Cleaning texture: %s", iter->first.c_str());
+                iter = mLoadedextureMap.erase(iter);
+            }
+            else
+            {
+                ++iter;
+            }
+        }
     }
     AssetManager::AssetManager()
     {

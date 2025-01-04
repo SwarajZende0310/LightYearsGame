@@ -1,5 +1,6 @@
 #include "framework/Application.h"
 #include "framework/Core.h"
+#include"framework/AssetManager.h"
 
 namespace ly
 {
@@ -7,7 +8,9 @@ namespace ly
         :mWindow(sf::VideoMode({windowWidth, windowHeight}), title, style),
         mTargetFrameRate(60.f),
         mTickClock(),
-        currentWorld(nullptr)
+        currentWorld(nullptr),
+        mCleanCycleClock{},
+        mCleanCycleInerval{2.f}
     {
         
     }
@@ -49,6 +52,13 @@ namespace ly
         if(currentWorld)
         {
             currentWorld->TickInternal(deltaTime);
+        }
+
+        // Clean Textures if not acquired by anyone
+        if(mCleanCycleClock.getElapsedTime().asSeconds() >= mCleanCycleInerval)
+        {
+            mCleanCycleClock.restart();
+            AssetManager::Get().CleanCycle();
         }
     }
 

@@ -36,12 +36,12 @@ namespace ly
     }
     void Actor::BeginPlay()
     {
-        LOG("Actor Began Play");
+        // LOG("Actor Began Play");
     }
 
     void Actor::Tick(float deltaTime)
     {
-        LOG("Actor Ticking");
+        // LOG("Actor Ticking");
     }
 
     void Actor::SetTexture(const std::string &texturePath)
