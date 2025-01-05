@@ -2,6 +2,7 @@
 #include<SFML/Graphics.hpp>
 #include"framework/Core.h"
 #include "framework/World.h"
+#include"framework/AssetManager.h"
 
 namespace ly
 {

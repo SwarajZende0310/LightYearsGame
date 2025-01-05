@@ -1,6 +1,4 @@
 #include "framework/Application.h"
-#include "framework/Core.h"
-#include"framework/AssetManager.h"
 
 namespace ly
 {

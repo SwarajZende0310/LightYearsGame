@@ -1,11 +1,14 @@
 #pragma once
 #include<SFML/Graphics.hpp>
-
+#include"framework/World.h"
 #include"framework/Core.h"
 #include"framework/Object.h"
+#include"framework/AssetManager.h"
+#include"framework/MathUtility.h"
 
 namespace ly
 {
+    // class World;
     class Actor : public Object
     {
         public:

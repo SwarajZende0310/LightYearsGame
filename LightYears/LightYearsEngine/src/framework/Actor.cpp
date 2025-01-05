@@ -1,8 +1,4 @@
-#include"framework/World.h"
 #include"framework/Actor.h"
-#include"framework/Core.h"
-#include"framework/AssetManager.h"
-#include"framework/MathUtility.h"
 
 namespace ly
 {

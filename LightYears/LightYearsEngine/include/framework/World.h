@@ -1,6 +1,7 @@
 #pragma once
 #include<SFML/Graphics.hpp>
 #include"framework/Core.h"
+#include"framework/Actor.h"
 
 namespace ly
 {
