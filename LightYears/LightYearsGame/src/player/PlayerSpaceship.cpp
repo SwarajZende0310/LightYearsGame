@@ -35,8 +35,14 @@ namespace ly
         {
             mMoveInput.x = 1.f;
         }
+        NormalizeInput();
     }
 
+    void PlayerSpaceship::NormalizeInput()
+    {
+        Normalize(mMoveInput);
+        // LOG("move input is now: %f , %f",mMoveInput.x,mMoveInput.y);
+    }
     void PlayerSpaceship::ConsumeInput(float deltaTime)
     {
         SetVelocity(mMoveInput * mSpeed);

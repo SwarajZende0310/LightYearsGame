@@ -1,6 +1,7 @@
 #pragma once
 #include"spaceship/Spaceship.h"
 #include<SFML/System.hpp>
+#include"framework/MathUtility.h"
 
 namespace ly
 {
@@ -14,6 +15,7 @@ namespace ly
         float GetSpeed(){return mSpeed;}
     private:
         void HandleInput();
+        void NormalizeInput();
         void ConsumeInput(float deltaTime);
         sf::Vector2f mMoveInput;
         float mSpeed;
