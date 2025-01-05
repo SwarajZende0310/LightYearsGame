@@ -8,7 +8,7 @@
 
 namespace ly
 {
-    // class World;
+    class World;
     class Actor : public Object
     {
         public:
