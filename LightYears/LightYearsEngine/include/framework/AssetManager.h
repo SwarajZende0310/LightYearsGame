@@ -10,10 +10,12 @@ namespace ly
             static AssetManager & Get();
             shared<sf::Texture> LoadTexture(const std::string &path);
             void CleanCycle();
+            void SetAssetRootDirectory(const std::string & directory);
         protected:
             AssetManager();
         private:
             static unique<AssetManager> assetManager;
             Dictionary<std::string,shared<sf::Texture>> mLoadedextureMap;
+            std::string mrootDirectory;
     };
 }
