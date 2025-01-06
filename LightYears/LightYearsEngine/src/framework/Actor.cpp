@@ -101,11 +101,35 @@ namespace ly
         return RotationToVector(GetActorRotation() + 90.f);
     }
 
+    sf::FloatRect Actor::GetActorGlobalBounds() const
+    {
+        return mSprite.getGlobalBounds();
+    }
+
     sf::Vector2u Actor::GetWindowSize() const
     {
         return mOwningWorld->GetWindowSize();
     }
-    void Actor::CenterPivot()
+
+    bool Actor::isActorOutOfWindowBounds() const
+    {
+        float windowWidth = mOwningWorld->GetWindowSize().x;
+        float windowHeight = mOwningWorld->GetWindowSize().y;
+
+        float width = GetActorGlobalBounds().width;
+        float height = GetActorGlobalBounds().height;
+
+        sf::Vector2f actorPos = GetActorLocation();
+
+        if(actorPos.x < -width || actorPos.x > windowWidth + width || actorPos.y < -height || actorPos.y > windowHeight + height)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    void Actor::CenterPivot() 
     {
         sf::FloatRect bound= mSprite.getGlobalBounds();
         mSprite.setOrigin(bound.width/2.f, bound.height/2.f);
