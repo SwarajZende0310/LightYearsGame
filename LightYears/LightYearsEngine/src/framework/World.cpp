@@ -7,7 +7,9 @@ namespace ly
     :mOwningApp(owningApp),
     mBeganPlay(false),
     mActors{},
-    mPendingActors{}
+    mPendingActors{},
+    mCleanCycleClock{},
+    mCleanCycleInerval{2.f}
     {
 
     }
@@ -34,6 +36,12 @@ namespace ly
         {
             iter->get()->TickInternal(deltaTime);
             ++iter;
+        }
+
+        if(mCleanCycleClock.getElapsedTime().asSeconds() >= mCleanCycleInerval)
+        {
+            mCleanCycleClock.restart();
+            CleanCycle();
         }
         Tick(deltaTime); 
     }

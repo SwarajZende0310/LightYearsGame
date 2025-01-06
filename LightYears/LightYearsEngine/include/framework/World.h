@@ -33,6 +33,9 @@ namespace ly
             List<shared<Actor>> mActors;
             
             List<shared<Actor>> mPendingActors;
+
+            sf::Clock mCleanCycleClock;
+            float mCleanCycleInerval;
     };
     
     template<typename ActorType, typename ... Args>
