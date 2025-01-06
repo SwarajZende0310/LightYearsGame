@@ -1,4 +1,5 @@
 #include"framework/World.h"
+#include"framework/Application.h"
 
 namespace ly
 {
@@ -57,6 +58,11 @@ namespace ly
 
     }
 
+    sf::Vector2u World::GetWindowSize() const
+    {
+        return mOwningApp->GetWindowSize();
+    }
+    
     void World::BeginPlay()
     {
         // LOG("Began Play");
