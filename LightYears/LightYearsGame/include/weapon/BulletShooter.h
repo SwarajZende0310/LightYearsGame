@@ -2,6 +2,8 @@
 #include<SFML/System.hpp>
 #include"weapon/Shooter.h"
 #include"framework/Core.h"
+#include"weapon/Bullet.h"
+#include"framework/World.h"
 
 namespace ly
 {

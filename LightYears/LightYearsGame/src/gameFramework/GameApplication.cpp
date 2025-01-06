@@ -20,6 +20,7 @@ namespace ly
         newWorld.lock()->SpawnActor<Actor>();
         testPlayerSpaceship = newWorld.lock()->SpawnActor<PlayerSpaceship>();
         testPlayerSpaceship.lock()->SetActorLocation(sf::Vector2f(300,490));
+        testPlayerSpaceship.lock()->SetActorRotation(-90.f);
     }
 
     void GameApplication::Tick(float deltaTime)

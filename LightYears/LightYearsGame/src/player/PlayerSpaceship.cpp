@@ -6,7 +6,7 @@ namespace ly
         :Spaceship(owningWorld,path),
         mMoveInput{},
         mSpeed{200.f},
-        mShooter{new BulletShooter{this}}
+        mShooter{new BulletShooter{this, 0.2f}}
     {
     }
 

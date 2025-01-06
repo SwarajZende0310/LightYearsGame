@@ -10,7 +10,7 @@ namespace ly
 
             virtual bool CanShoot()const{return true;}
             virtual bool isOnCooldown()const{return false;}
-            Actor* GetQwenr()const{return mOwner;}
+            Actor* GetOwner()const{return mOwner;}
 
         protected:
             Shooter(Actor*owner);
