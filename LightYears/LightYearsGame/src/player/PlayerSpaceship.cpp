@@ -5,7 +5,8 @@ namespace ly
     PlayerSpaceship::PlayerSpaceship(World* owningWorld, const std::string& path)
         :Spaceship(owningWorld,path),
         mMoveInput{},
-        mSpeed{200.f}
+        mSpeed{200.f},
+        mShooter{new BulletShooter{this}}
     {
     }
 
@@ -14,6 +15,14 @@ namespace ly
         Spaceship::Tick(deltaTime);
         HandleInput();
         ConsumeInput(deltaTime);
+    }
+
+    void PlayerSpaceship::Shoot()
+    {
+        if(mShooter)
+        {
+            mShooter->Shoot();
+        }
     }
 
     void PlayerSpaceship::HandleInput()
@@ -39,6 +48,11 @@ namespace ly
         ClampInputOnEdge();
 
         NormalizeInput();
+
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        {
+            Shoot();
+        }
     }
 
     void PlayerSpaceship::NormalizeInput()
