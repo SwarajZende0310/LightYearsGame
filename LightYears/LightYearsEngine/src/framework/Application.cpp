@@ -57,6 +57,9 @@ namespace ly
             currentWorld->TickInternal(deltaTime);
         }
 
+        //Tick the Physics Engine
+        PhysicsSystem::Get().Step(deltaTime);
+
         // Clean Textures if not acquired by anyone
         if(mCleanCycleClock.getElapsedTime().asSeconds() >= mCleanCycleInerval)
         {

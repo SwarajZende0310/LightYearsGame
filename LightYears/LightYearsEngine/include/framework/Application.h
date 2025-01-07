@@ -3,6 +3,7 @@
 #include"framework/Core.h"
 #include "framework/World.h"
 #include"framework/AssetManager.h"
+#include"framework/PhysicsSystem.h"
 
 namespace ly
 {
