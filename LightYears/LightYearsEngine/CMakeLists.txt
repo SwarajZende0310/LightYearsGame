@@ -22,6 +22,9 @@ add_library(${LIGHT_YEARS_ENGINE_TARGET_NAME} STATIC
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/MathUtility.h
     ${CMAKE_CMAKE_CURRENT_SOURCE_DIR}src/framework/MathUtility.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/PhysicsSystem.h
+    ${CMAKE_CMAKE_CURRENT_SOURCE_DIR}src/framework/PhysicsSystem.cpp
 )
 
 target_include_directories(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC 
@@ -45,11 +48,12 @@ target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-window)
 target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-system)
 target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-audio)
 
+option(BOX2D_BUILD_UNIT_TESTS "build box 2d unit test" OFF)
 set(BOX_2D_LIB_NAME Box2D)
 FetchContent_Declare(
         ${BOX_2D_LIB_NAME}
         GIT_REPOSITORY https://github.com/erincatto/box2d.git
-        GIT_TAG v3.0.0
+        GIT_TAG v2.4.1
         GIT_SHALLOW FALSE
 )
 FetchContent_MakeAvailable(${BOX_2D_LIB_NAME})
