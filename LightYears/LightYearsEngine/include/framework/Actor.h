@@ -1,11 +1,15 @@
 #pragma once
 #include<SFML/Graphics.hpp>
+#include<box2d/b2_body.h>
+
 #include"framework/World.h"
 #include"framework/Core.h"
 #include"framework/Object.h"
 #include"framework/AssetManager.h"
 #include"framework/MathUtility.h"
+#include"framework/PhysicsSystem.h"
 
+class b2Body;
 namespace ly
 {
     class World;
@@ -40,12 +44,21 @@ namespace ly
 
             bool isActorOutOfWindowBounds() const;
 
+            void SetEnablePhysics(bool enable);
+
         private:
+            void IntializePhysics();
+            void UninitializePhysics();
+            void UpdatePhysicsBodyTransform();
+
             void CenterPivot();
             World* mOwningWorld;
             bool mHasBeganPlay;
 
             sf::Sprite mSprite;
             shared<sf::Texture> mTexture;
+
+            b2Body* mPhysicsBody;
+            bool mPhysicsEnabled;
     };
 }

@@ -10,12 +10,15 @@
 
 namespace ly
 {
+    class Actor;
     class PhysicsSystem
     {
         public:
             static PhysicsSystem& Get();
             void Step(float deltaTime);
             b2Body* AddListener(Actor*listener);
+            void RemoveListener(b2Body* bodyToRemove);
+
             float GetPhysicsScale()const{return mPhysicsScale;}
         protected:
             PhysicsSystem();

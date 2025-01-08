@@ -6,7 +6,9 @@ namespace ly
         mOwningWorld{owningWorld},
         mHasBeganPlay(false),
         mSprite(),
-        mTexture()
+        mTexture(),
+        mPhysicsBody{nullptr},
+        mPhysicsEnabled{false}
     {
         SetTexture(texturePath);
     }
@@ -129,7 +131,41 @@ namespace ly
         return false;
     }
 
-    void Actor::CenterPivot() 
+    void Actor::SetEnablePhysics(bool enable)
+    {
+        mPhysicsEnabled = enable;
+        if(mPhysicsEnabled){
+            IntializePhysics();
+        }else{
+            UninitializePhysics();
+        }
+    }
+    void Actor::IntializePhysics()
+    {
+        if(!mPhysicsBody)
+        {
+            mPhysicsBody = PhysicsSystem::Get().AddListener(this);
+        }
+    }
+    void Actor::UninitializePhysics()
+    {
+        if(mPhysicsBody)
+        {
+            PhysicsSystem::Get().RemoveListener(mPhysicsBody);
+        }
+    }
+    void Actor::UpdatePhysicsBodyTransform()
+    {
+        if(mPhysicsBody)
+        {
+            float physicsScale = PhysicsSystem::Get().GetPhysicsScale();
+            b2Vec2 pos{GetActorLocation().x * physicsScale, GetActorLocation().y * physicsScale};
+            float rotation = DegreesToRadians(GetActorRotation());
+
+            mPhysicsBody->SetTransform(pos,rotation);
+        }
+    }
+    void Actor::CenterPivot()
     {
         sf::FloatRect bound= mSprite.getGlobalBounds();
         mSprite.setOrigin(bound.width/2.f, bound.height/2.f);

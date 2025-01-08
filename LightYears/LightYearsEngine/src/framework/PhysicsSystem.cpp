@@ -47,6 +47,10 @@ namespace ly
         return body;
     }
 
+    void PhysicsSystem::RemoveListener(b2Body *bodyToRemove)
+    {
+        // TODO: Implement removal of Physics body
+    }
     PhysicsSystem::PhysicsSystem()
         : mPhysicsWorld{b2Vec2{0.f, 0.f}},
           mPhysicsScale{0.01f},
