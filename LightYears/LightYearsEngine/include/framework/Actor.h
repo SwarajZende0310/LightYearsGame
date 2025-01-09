@@ -45,6 +45,8 @@ namespace ly
             bool isActorOutOfWindowBounds() const;
 
             void SetEnablePhysics(bool enable);
+            virtual void OnActorBeginOverlap(Actor* other);
+            virtual void OnActorEndOverlap(Actor* other);
 
         private:
             void IntializePhysics();

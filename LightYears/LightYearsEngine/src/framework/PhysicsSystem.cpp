@@ -57,6 +57,52 @@ namespace ly
           mVelocityIterations{8},
           mPositionIterations{3}
     {
+        mPhysicsWorld.SetContactListener(&mContactListener);
+        mPhysicsWorld.SetAllowSleeping(false);
+    }
 
+    void PhysicsConatctListener::BeginContact(b2Contact *contact)
+    {
+        Actor * ActorA = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
+        Actor * ActorB = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
+
+        // Notify Actors
+        if(ActorA && !ActorA->IsPendingDestroy())
+        {
+            ActorA->OnActorBeginOverlap(ActorB);
+        }
+
+        if(ActorB && !ActorB->IsPendingDestroy())
+        {
+            ActorB->OnActorBeginOverlap(ActorA);
+        }
+    }
+
+    void PhysicsConatctListener::EndContact(b2Contact *contact)
+    {
+        Actor* ActorA = nullptr;
+        Actor* ActorB = nullptr;
+
+        // Check whether fixtures exist then move pointer 
+        if(contact->GetFixtureA() && contact->GetFixtureA()->GetBody())
+        {
+            ActorA = reinterpret_cast<Actor*>(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
+        }
+
+        if(contact->GetFixtureB() && contact->GetFixtureB()->GetBody())
+        {
+            ActorB = reinterpret_cast<Actor*>(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
+        }
+
+        // Notify Actors
+        if(ActorA && !ActorA->IsPendingDestroy())
+        {
+            ActorA->OnActorEndOverlap(ActorB);
+        }
+
+        if(ActorB && !ActorB->IsPendingDestroy())
+        {
+            ActorB->OnActorEndOverlap(ActorA);
+        }
     }
 }

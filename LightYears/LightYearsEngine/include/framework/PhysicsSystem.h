@@ -3,6 +3,7 @@
 #include<box2d/b2_body.h>
 #include<box2d/b2_polygon_shape.h>
 #include<box2d/b2_fixture.h>
+#include<box2d/b2_contact.h>
 
 #include"framework/Core.h"
 #include"framework/Actor.h"
@@ -11,6 +12,13 @@
 namespace ly
 {
     class Actor;
+
+    class PhysicsConatctListener : public b2ContactListener
+    {
+        virtual void BeginContact(b2Contact* contact)override;
+        virtual void EndContact(b2Contact* contact)override;
+    };
+
     class PhysicsSystem
     {
         public:
@@ -28,5 +36,7 @@ namespace ly
             float mPhysicsScale;
             int mVelocityIterations;
             int mPositionIterations;
+
+            PhysicsConatctListener mContactListener;
     };
 }
