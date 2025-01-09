@@ -1,6 +1,7 @@
 #pragma once
 #include"framework/World.h"
 #include "framework/Actor.h"
+#include"gameplay/HealthComponent.h"
 
 namespace ly
 {
@@ -15,5 +16,6 @@ namespace ly
 		virtual void BeginPlay()override;
 	private:
 		sf::Vector2f mVelocity;
+		HealthComponent mHealthComp;
 	};
 }
