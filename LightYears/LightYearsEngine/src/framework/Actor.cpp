@@ -150,6 +150,13 @@ namespace ly
     {
         LOG("OVERLAP ENDED");
     }
+
+    void Actor::Destroy()
+    {
+        UninitializePhysics();
+        Object::Destroy();
+    }
+
     void Actor::IntializePhysics()
     {
         if(!mPhysicsBody)
@@ -162,6 +169,7 @@ namespace ly
         if(mPhysicsBody)
         {
             PhysicsSystem::Get().RemoveListener(mPhysicsBody);
+            mPhysicsBody = nullptr;
         }
     }
     void Actor::UpdatePhysicsBodyTransform()
