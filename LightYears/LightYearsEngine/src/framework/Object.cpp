@@ -15,4 +15,14 @@ namespace ly
     {
         mIsPendingDestroy = true;
     }
+
+    weak<Object> Object::GetWeakRef()
+    {
+        return weak_from_this();
+    }
+
+    weak<const Object> ly::Object::GetWeakRef() const
+    {
+        return weak_from_this();
+    }
 }

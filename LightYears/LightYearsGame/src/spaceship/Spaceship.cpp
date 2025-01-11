@@ -1,4 +1,5 @@
 #include "spaceship/Spaceship.h"
+#include "Spaceship.h"
 
 namespace ly
 {
@@ -30,5 +31,11 @@ namespace ly
 	{
 		Actor::BeginPlay();
 		SetEnablePhysics(true);
+		mHealthComp.onHealthChanged.BindAction(GetWeakRef(),&Spaceship::OnHealthChanged);
+	}
+
+	void Spaceship::OnHealthCnanged(float amt, float health, float maxHealth)
+	{
+
 	}
 }
