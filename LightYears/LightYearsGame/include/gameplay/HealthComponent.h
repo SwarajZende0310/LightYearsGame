@@ -12,7 +12,7 @@ namespace ly
         float GetHealth()const {return mHealth;}
         float GetMaxHealth()const{return mMaxHealth;}
 
-        Delegate<float , float ,float> onHealthChanged();
+        Delegate<float , float ,float> onHealthChanged;
     private:
         void HealthEmpty();
         void HealthRegen(float amt);

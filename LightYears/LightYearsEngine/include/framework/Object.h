@@ -2,6 +2,7 @@
 #include<memory>
 
 #include"framework/Core.h"
+#include"framework/Delegate.h"
 
 namespace ly
 {
@@ -16,6 +17,8 @@ namespace ly
 
             weak<Object> GetWeakRef();
             weak<const Object> GetWeakRef()const;
+
+            Delegate<Object*> onDestroy;
             
         private:
             bool mIsPendingDestroy;
