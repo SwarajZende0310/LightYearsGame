@@ -48,6 +48,14 @@ namespace ly
             virtual void OnActorBeginOverlap(Actor* other);
             virtual void OnActorEndOverlap(Actor* other);
             virtual void Destroy()override;
+            static uint8 GetNeutralTeamID() {return neutralTeamID;}
+
+            void SetTeamID(uint8 teamID){mTeamID = teamID;}
+            uint8 GetTeamID() const{return mTeamID;}
+
+            bool IsOtherHostile(Actor* other)const;
+
+            virtual void ApplyDamage(float amt);
             
         private:
             void IntializePhysics();
@@ -63,5 +71,9 @@ namespace ly
 
             b2Body* mPhysicsBody;
             bool mPhysicsEnabled;
+
+            uint8 mTeamID;
+
+            const static uint8 neutralTeamID = 255;
     };
 }

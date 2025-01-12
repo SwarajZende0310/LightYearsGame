@@ -30,6 +30,8 @@ namespace ly
     template<typename T>
     using Set = std::unordered_set<T>;
 
+    using uint6 = unsigned char;
+
     // Macro definition
     #define LOG(M, ...) printf(M "\n", ##__VA_ARGS__)
 }

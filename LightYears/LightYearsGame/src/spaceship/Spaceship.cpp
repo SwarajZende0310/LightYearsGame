@@ -31,12 +31,25 @@ namespace ly
 		Actor::BeginPlay();
 		SetEnablePhysics(true);
 		mHealthComp.onHealthChanged.BindAction(GetWeakRef() ,&Spaceship::OnHealthChanged);
-
-		mHealthComp.onHealthChanged.Broadcast(11,89,100);
+		// mHealthComp.onTakenDamage.BindAction(GetWeakRef(), &Spaceship::onTakenDamage);
+		mHealthComp.onHealthEmpty.BindAction(GetWeakRef(), &Spaceship::Blow);
 	}
+
+    void Spaceship::ApplyDamage(float amt)
+    {
+		mHealthComp.ChangeHealth(-amt);
+    }
 
     void Spaceship::OnHealthChanged(float amt, float health, float maxHealth)
     {
 		LOG("Health changed by: %f and is now %f/%f",amt,health,maxHealth);
 	}
+    void Spaceship::OnTakenDamage(float amt, float health, float maxHealth)
+    {
+
+    }
+    void Spaceship::Blow()
+    {
+		Destroy();
+    }
 }
