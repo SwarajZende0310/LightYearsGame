@@ -56,6 +56,8 @@ namespace ly
             bool IsOtherHostile(Actor* other)const;
 
             virtual void ApplyDamage(float amt);
+
+            sf::Sprite& GetSprite(){return mSprite;}
             
         private:
             void IntializePhysics();

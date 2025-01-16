@@ -5,7 +5,10 @@ namespace ly
 	Spaceship::Spaceship(World* owningWord, const std::string& texturePath)
 		: Actor{owningWord, texturePath},
 		mVelocity{},
-		mHealthComp{100.f,100.f}
+		mHealthComp{100.f,100.f},
+		mBlinkTime{0.f},
+		mBlinkDuration{0.2f},
+		mBlinkColorOffset{255,0,0,255}
 	{
 
 	}
@@ -14,6 +17,7 @@ namespace ly
 	{
 		Actor::Tick(deltaTime);
 		AddActorLocationOffset(GetVelocity() * deltaTime);
+		UpdateBlink(deltaTime);
 	}
 
 	void Spaceship::SetVelocity(const sf::Vector2f& newVel)
@@ -31,7 +35,7 @@ namespace ly
 		Actor::BeginPlay();
 		SetEnablePhysics(true);
 		mHealthComp.onHealthChanged.BindAction(GetWeakRef() ,&Spaceship::OnHealthChanged);
-		// mHealthComp.onTakenDamage.BindAction(GetWeakRef(), &Spaceship::onTakenDamage);
+		mHealthComp.onTakenDamage.BindAction(GetWeakRef(), &Spaceship::OnTakenDamage);
 		mHealthComp.onHealthEmpty.BindAction(GetWeakRef(), &Spaceship::Blow);
 	}
 
@@ -40,14 +44,35 @@ namespace ly
 		mHealthComp.ChangeHealth(-amt);
     }
 
+    void Spaceship::Blink()
+    {
+		if(mBlinkTime == 0)
+		{
+			mBlinkTime = mBlinkDuration;
+		}
+    }
+
+    void Spaceship::UpdateBlink(float deltaTime)
+    {
+		if(mBlinkTime > 0)
+		{
+			mBlinkTime -= deltaTime;
+			mBlinkTime = mBlinkTime > 0 ? mBlinkTime : 0.f;//Clamping blink time 
+
+			GetSprite().setColor(LerpColor(sf::Color::White, mBlinkColorOffset, mBlinkTime));
+		}
+    }
+
     void Spaceship::OnHealthChanged(float amt, float health, float maxHealth)
     {
 		LOG("Health changed by: %f and is now %f/%f",amt,health,maxHealth);
 	}
+
     void Spaceship::OnTakenDamage(float amt, float health, float maxHealth)
     {
-
+		Blink();
     }
+
     void Spaceship::Blow()
     {
 		Destroy();
