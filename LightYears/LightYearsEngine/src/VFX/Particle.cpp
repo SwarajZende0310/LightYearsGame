@@ -1,5 +1,4 @@
 #include"VFX/Particle.h"
-#include "Particle.h"
 
 namespace ly
 {
@@ -20,9 +19,9 @@ namespace ly
         Fade(deltaTime);
 
         if(mTimer.getElapsedTime().asSeconds() >= mLifeTime)
-        [
+        {
             Destroy();
-        ]
+        }
     }
 
     void Particle::RandomVelocity(float minSpeed, float maxSpeed)
@@ -49,6 +48,6 @@ namespace ly
     {
         float elapsedTime = mTimer.getElapsedTime().asSeconds();
         GetSprite().setColor(LerpColor(GetSprite().getColor(),sf::Color(255,255,255,0),elapsedTime/mLifeTime));
-        GetSprite().setScale(LerpVector(GetSprite().getScale(),sf::Vector2f(0,0),elapsedTime/mLifeTime))
+        GetSprite().setScale(LerpVector(GetSprite().getScale(),sf::Vector2f(0,0),elapsedTime/mLifeTime));
     }
 }

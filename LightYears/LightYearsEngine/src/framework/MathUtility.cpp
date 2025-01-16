@@ -1,5 +1,4 @@
 #include"framework/MathUtility.h"
-#include "MathUtility.h"
 
 namespace ly
 {
