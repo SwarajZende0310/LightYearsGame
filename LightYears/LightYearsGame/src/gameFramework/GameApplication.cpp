@@ -3,6 +3,7 @@
 #include"framework/Actor.h"
 #include"framework/AssetManager.h"
 #include"player/PlayerSpaceship.h"
+#include"Enemy/Vanguard.h"
 #include"config.h"
 
 ly::Application* GetApplication()
@@ -18,14 +19,11 @@ namespace ly
         AssetManager::Get().SetAssetRootDirectory(GetResourceDir());
         weak<World> newWorld = LoadWorld<World>();
         testPlayerSpaceship = newWorld.lock()->SpawnActor<PlayerSpaceship>();
-        testPlayerSpaceship.lock()->SetActorLocation(sf::Vector2f(300,490));
+        testPlayerSpaceship.lock()->SetActorLocation(sf::Vector2f(300,690));
         testPlayerSpaceship.lock()->SetActorRotation(-90.f);
 
-        weak<Spaceship> testSpaceship = newWorld.lock()->SpawnActor<Spaceship>();
-        testSpaceship.lock()->SetTexture("SpaceShooterRedux/PNG/playerShip1_red.png");
-        testSpaceship.lock()->SetActorLocation(sf::Vector2f(300.f,300.f));
-        testSpaceship.lock()->SetActorRotation(-90.f);
-        testSpaceship.lock()->SetTeamID(2);
+        weak<Vanguard> testSpaceship = newWorld.lock()->SpawnActor<Vanguard>();
+        testSpaceship.lock()->SetActorLocation(sf::Vector2f(300.f,0.f));
         counter = 0.f;
     }
 

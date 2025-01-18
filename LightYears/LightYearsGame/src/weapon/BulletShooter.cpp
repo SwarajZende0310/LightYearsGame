@@ -5,13 +5,13 @@ namespace ly
     BulletShooter::BulletShooter(Actor *owner,float cooldownTime)
         :Shooter{owner},
         mCooldownClock{},
-        mCOoldownTime{cooldownTime}
+        mCooldownTime{cooldownTime}
     {
 
     }
     bool BulletShooter::isOnCooldown() const
     {
-        if(mCooldownClock.getElapsedTime().asSeconds() > mCOoldownTime)
+        if(mCooldownClock.getElapsedTime().asSeconds() > mCooldownTime)
         {
             return false;
         }

@@ -10,11 +10,11 @@ namespace ly
     class BulletShooter : public Shooter
     {
         public:
-            BulletShooter(Actor*owner,float cooldownTime=0.3f);
+            BulletShooter(Actor*owner,float cooldownTime=1.f);
             virtual bool isOnCooldown()const override;
         private:
             virtual void ShootImpl()override;
             sf::Clock mCooldownClock;
-            float mCOoldownTime;
+            float mCooldownTime;
     };
 }
