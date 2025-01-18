@@ -3,6 +3,7 @@
 #include "framework/Actor.h"
 #include"gameplay/HealthComponent.h"
 #include"framework/MathUtility.h"
+#include"VFX/Explosion.h"
 
 namespace ly
 {

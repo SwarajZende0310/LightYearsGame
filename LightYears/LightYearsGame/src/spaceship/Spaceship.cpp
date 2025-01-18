@@ -75,6 +75,9 @@ namespace ly
 
     void Spaceship::Blow()
     {
+		Explosion* exp = new Explosion();
+		exp->SpawnExplosion(GetWorld(), GetActorLocation());
 		Destroy();
+		delete exp;
     }
 }
