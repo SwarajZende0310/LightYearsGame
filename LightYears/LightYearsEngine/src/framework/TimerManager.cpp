@@ -22,7 +22,7 @@ namespace ly
             mListener.second();
 
             if(mRepeat)mTimeCounter = 0.f;
-            else SerExpired();
+            else SetExpired();
         }
     }
 
@@ -31,22 +31,40 @@ namespace ly
         return mIsExpired || mListener.first.expired() || mListener.first.lock()->IsPendingDestroy();
     }
 
-    void Timer::SerExpired()
+    void Timer::SetExpired()
     {
         mIsExpired = true;
     }
 
     unique<TimerManager> TimerManager :: timerManager{ nullptr};
+    unsigned int TimerManager:: timerIndexCounter = 0;
 
     void TimerManager::UpdateTimer(float deltaTime)
     {
-        for(auto& timer : mTimers)
+        for(auto iter = mTimers.begin(); iter != mTimers.end();)
         {
-            timer.TickTime(deltaTime);
+            if(iter->second.Expired())
+            {
+                iter = mTimers.erase(iter);
+            }
+            else
+            {
+                iter->second.TickTime(deltaTime);
+                ++iter;
+            }
         }
     }
 
-    TimerManager::TimerManager():mTimers{}
+    void TimerManager::ClearTimer(unsigned int timerIndex)
+    {
+        auto iter = mTimers.find(timerIndex); 
+        if( iter != mTimers.end() )
+        {
+            iter->second.SetExpired();
+        }
+    }
+     
+    TimerManager::TimerManager() : mTimers{}
     {
 
     }
