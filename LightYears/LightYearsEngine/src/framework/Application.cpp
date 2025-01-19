@@ -57,6 +57,8 @@ namespace ly
             currentWorld->TickInternal(deltaTime);
         }
 
+        TimerManager::Get().UpdateTimer(deltaTime);
+        
         //Tick the Physics Engine
         PhysicsSystem::Get().Step(deltaTime);
 
