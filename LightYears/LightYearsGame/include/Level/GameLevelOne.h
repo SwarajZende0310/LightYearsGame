@@ -14,5 +14,7 @@ namespace ly
             weak<PlayerSpaceship> testPlayerSpaceship;
             void TimerCallback_Test();
             TimerHandle timerHandle_test;
+
+            virtual void InitGameStages() override;
     };
 }
