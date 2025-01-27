@@ -37,6 +37,9 @@ add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/TwinBlade.h
     ${CMAKE_CMAKE_CURRENT_SOURCE_DIR}src/Enemy/TwinBlade.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/TwinBladeStage.h
+    ${CMAKE_CMAKE_CURRENT_SOURCE_DIR}src/Enemy/TwinBladeStage.cpp
 )
 
 target_include_directories(${LIGHT_YEARS_GAME_TARGET_NAME} PUBLIC 
