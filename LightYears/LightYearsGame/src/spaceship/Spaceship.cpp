@@ -65,7 +65,7 @@ namespace ly
 
     void Spaceship::OnHealthChanged(float amt, float health, float maxHealth)
     {
-		LOG("Health changed by: %f and is now %f/%f",amt,health,maxHealth);
+		//LOG("Health changed by: %f and is now %f/%f",amt,health,maxHealth);
 	}
 
     void Spaceship::OnTakenDamage(float amt, float health, float maxHealth)
