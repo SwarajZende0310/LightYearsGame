@@ -22,7 +22,6 @@ namespace ly
 
     void VanguardStage::StartStage()
     {
-        GameStage::StartStage();
         auto windowSize = GetWorld()->GetWindowSize();
         mLeftSpawnLoc = sf::Vector2f{ mSpawnDistanceToEdge, -100.f};
         mRightSpawnLoc = sf::Vector2f{ windowSize.x - mSpawnDistanceToEdge, -100.f};
