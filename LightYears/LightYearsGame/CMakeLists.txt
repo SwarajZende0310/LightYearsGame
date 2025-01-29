@@ -52,6 +52,9 @@ add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/UFOStage.h
     ${CMAKE_CMAKE_CURRENT_SOURCE_DIR}src/Enemy/UFOStage.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/weapon/ThreeWayShooter.h
+    ${CMAKE_CMAKE_CURRENT_SOURCE_DIR}src/weapon/ThreeWayShooter.cpp
 )
 
 target_include_directories(${LIGHT_YEARS_GAME_TARGET_NAME} PUBLIC 

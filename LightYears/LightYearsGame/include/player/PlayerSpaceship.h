@@ -3,10 +3,11 @@
 #include<SFML/System.hpp>
 #include"framework/MathUtility.h"
 #include"weapon/BulletShooter.h"
+#include"weapon/ThreeWayShooter.h"
 
 namespace ly
 {
-    class BulletShooter;
+    class Shooter;
     class PlayerSpaceship : public Spaceship
     {
     public:
@@ -24,7 +25,7 @@ namespace ly
         sf::Vector2f mMoveInput;
         float mSpeed;
 
-        unique<BulletShooter> mShooter;
+        unique<Shooter> mShooter;
     };
     
 }
