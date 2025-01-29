@@ -1,7 +1,6 @@
 #include"Enemy/VanguardStage.h"
 #include"framework/World.h"
 #include"Enemy/Vanguard.h"
-#include"Enemy/Hexagon.h"
 
 namespace ly
 {
