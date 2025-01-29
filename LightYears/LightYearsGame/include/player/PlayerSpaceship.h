@@ -4,6 +4,7 @@
 #include"framework/MathUtility.h"
 #include"weapon/BulletShooter.h"
 #include"weapon/ThreeWayShooter.h"
+#include"weapon/FrontalWiper.h"
 
 namespace ly
 {
