@@ -58,6 +58,9 @@ add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/weapon/FrontalWiper.h
     ${CMAKE_CMAKE_CURRENT_SOURCE_DIR}src/weapon/FrontalWiper.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/player/Reward.h
+    ${CMAKE_CMAKE_CURRENT_SOURCE_DIR}src/player/Reward.cpp
 )
 
 target_include_directories(${LIGHT_YEARS_GAME_TARGET_NAME} PUBLIC 
