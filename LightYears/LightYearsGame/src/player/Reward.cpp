@@ -8,6 +8,7 @@ namespace ly
 {
     Reward::Reward(World *world, const std::string &texturePath, RewardFunction rewardFunction, float speed)
         : Actor{world, texturePath},
+        mRewardFunc{rewardFunction},
         mSpeed{speed}
     {
 
@@ -28,10 +29,11 @@ namespace ly
     void Reward::OnActorBeginOverlap(Actor *otherActor)
     {
         // TODO: clean up casting
-        PlayerSpaceship * playerSpaceship = static_cast<PlayerSpaceship*>(otherActor);
+        PlayerSpaceship * playerSpaceship = dynamic_cast<PlayerSpaceship*>(otherActor);
         if(playerSpaceship != nullptr && !playerSpaceship->IsPendingDestroy())
         {
             mRewardFunc(playerSpaceship);
+            Destroy();
         }
     }
 
