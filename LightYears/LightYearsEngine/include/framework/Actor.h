@@ -8,6 +8,7 @@
 #include"framework/AssetManager.h"
 #include"framework/MathUtility.h"
 #include"framework/PhysicsSystem.h"
+#include"framework/Delegate.h"
 
 class b2Body;
 namespace ly
@@ -58,6 +59,8 @@ namespace ly
             virtual void ApplyDamage(float amt);
 
             sf::Sprite& GetSprite(){return mSprite;}
+
+            Delegate<Actor*> onActorDestroyed;
             
         private:
             void IntializePhysics();
