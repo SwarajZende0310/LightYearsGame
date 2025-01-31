@@ -9,6 +9,7 @@
 #include"Enemy/TwinBladeStage.h"
 #include"Enemy/HexagonStage.h"
 #include"Enemy/UFOStage.h"
+#include"player/PlayerManager.h"
 
 namespace ly
 {
@@ -20,7 +21,8 @@ namespace ly
 
     void GameLevelOne::BeginPlay()
     {
-
+        Player newPlayer = PlayerManager::Get().CreateNewPlayer();
+        newPlayer.SpawnSpaceship(this);
     }
 
     void GameLevelOne::InitGameStages()

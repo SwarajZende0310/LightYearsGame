@@ -21,12 +21,13 @@ namespace ly
             mCurrentPlayerSpaceship.lock()->SetActorLocation(sf::Vector2f(windowSize.x/2.f , windowSize.y - 100.f));
             mCurrentPlayerSpaceship.lock()->SetActorRotation(-90.f);
             onLifeChange.Broadcast(mLifeCount);
+            return mCurrentPlayerSpaceship;
         }
         else
         {
             onLifeExhausted.Broadcast();
         }
-        return mCurrentPlayerSpaceship;
+        return weak<PlayerSpaceship>();
     }
 
     void Player::AddLifeCount(unsigned int count)
