@@ -9,6 +9,7 @@ namespace ly
     class Actor;
     class Application;
     class GameStage;
+    class HUD;
     class World : public Object
     {
         public:
@@ -23,14 +24,20 @@ namespace ly
             template<typename ActorType, typename ... Args>
             weak<ActorType>SpawnActor(Args... args);
 
+            template<typename HUDType, typename...Args>
+            weak<HUD> SpawnHUD(Args... arg);
+
             sf::Vector2u GetWindowSize()const;
 
             void CleanCycle();
 
             void AddStage(const shared<GameStage>& newStage);
+
+            bool DispathEvent(const sf::Event event);
         private:
             virtual void BeginPlay();
             virtual void Tick(float deltaTime);
+            void RenderHUD(sf::RenderWindow &window);
             Application* mOwningApp;
             bool mBeganPlay;
 
@@ -41,6 +48,8 @@ namespace ly
             List<shared<GameStage>> mGameStages;
             
             List<shared<GameStage>>::iterator mCurrentStage;
+
+            shared<HUD> mHUD;
 
             virtual void InitGameStages(); 
             virtual void AllGameStageFinished();
@@ -57,5 +66,13 @@ namespace ly
         shared<ActorType> newActor{ new ActorType{this,args...}};
         mPendingActors.push_back(newActor);
         return newActor;
+    }
+
+    template <typename HUDType, typename... Args>
+    inline weak<HUD> World::SpawnHUD(Args... arg)
+    {
+        shared<HUDType> newHUD{new HUDType{arg...}};
+        mHUD = newHUD;
+        return newHUD;
     }
 }

@@ -6,7 +6,7 @@ namespace ly
         :mWindow(sf::VideoMode({windowWidth, windowHeight}), title, style),
         mTargetFrameRate(60.f),
         mTickClock(),
-        currentWorld(nullptr),
+        mCurrentWorld(nullptr),
         mCleanCycleClock{},
         mCleanCycleInerval{2.f}
     {
@@ -28,6 +28,10 @@ namespace ly
                 {
                     mWindow.close();
                 }
+                else
+                {
+                    DispathEvent(windowEvent);
+                }
             }
 
             // accumalatedTime += mTickClock.restart().asSeconds();//Calculating the time elapsed before rendering
@@ -47,14 +51,23 @@ namespace ly
     {
         return mWindow.getSize();
     }
-    
-    void Application::TickInternal(float deltaTime)
+
+    bool Application::DispathEvent(const sf::Event &event)
+    {
+        if(mCurrentWorld)
+        {
+            return mCurrentWorld->DispathEvent(event);
+        }
+        return false;
+    }
+
+    void Application::TickInternal(float deltaTime) 
     {
         Tick(deltaTime);
 
-        if(currentWorld)
+        if(mCurrentWorld)
         {
-            currentWorld->TickInternal(deltaTime);
+            mCurrentWorld->TickInternal(deltaTime);
         }
 
         TimerManager::Get().UpdateTimer(deltaTime);
@@ -81,9 +94,9 @@ namespace ly
 
     void Application :: Render()
     {
-        if(currentWorld)
+        if(mCurrentWorld)
         {
-            currentWorld->Render(mWindow);
+            mCurrentWorld->Render(mWindow);
         }   
     }
 
