@@ -28,5 +28,5 @@ namespace ly
             virtual void RotationUpdated(float newRotation);
             sf::Transformable mWidgetTransform;
             bool mIsVisible;
-    }
+    };
 }
