@@ -22,7 +22,7 @@ namespace ly
             virtual void RotationUpdated(float newRotation) override;
 
             virtual void Draw(sf::RenderWindow& windowRef)override;
-            sf::Text mText;
             shared<sf::Font> mFont;
+            sf::Text mText;
     };
 }

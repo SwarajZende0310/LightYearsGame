@@ -10,6 +10,7 @@
 #include"Enemy/HexagonStage.h"
 #include"Enemy/UFOStage.h"
 #include"player/PlayerManager.h"
+#include"widgets/GameplayHUD.h"
 
 namespace ly
 {
@@ -24,6 +25,8 @@ namespace ly
         Player newPlayer = PlayerManager::Get().CreateNewPlayer();
         mPlayerSpaceship = newPlayer.SpawnSpaceship(this);
         mPlayerSpaceship.lock()->onActorDestroyed.BindAction(GetWeakRef(), &GameLevelOne::PlayerSpaceShipDestroyed);
+
+        mGameplayHUD = SpawnHUD<GameplayHUD>();
     }
 
     void GameLevelOne::PlayerSpaceShipDestroyed(Actor *destroyedPlayerSpaceship)

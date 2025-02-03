@@ -16,8 +16,13 @@ namespace ly
         return false;
     }
 
-    HUD::HUD() 
-        :mAlreadyInit{false}
+    void HUD::Tick(float deltaTime)
+    {
+
+    }
+
+    HUD::HUD()
+        : mAlreadyInit{false}
     {
 
     }
