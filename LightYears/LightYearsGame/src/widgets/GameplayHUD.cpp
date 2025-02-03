@@ -7,7 +7,10 @@ namespace ly
 {
     GameplayHUD::GameplayHUD()
         :mFrameRateText{"Frame Rate:"},
-        mPlayerHealthBar{}
+        mPlayerHealthBar{},
+        mHealthyHealthBarColor{128,255,128,255},
+        mCriticalHealthBarColor{255,0,0,255},
+        mCriticalThreshold{0.3f}
     {
         mFrameRateText.SetTextSize(30);
     }
@@ -36,6 +39,14 @@ namespace ly
     void GameplayHUD::PlayerHealthUpdated(float amt, float currentHealth, float maxHealth)
     {
         mPlayerHealthBar.UpdateValue(currentHealth, maxHealth);
+        if( currentHealth / maxHealth < mCriticalThreshold)
+        {
+            mPlayerHealthBar.SetForegroundColor(mCriticalHealthBarColor);
+        }
+        else
+        {
+            mPlayerHealthBar.SetForegroundColor(mHealthyHealthBarColor);
+        }
     }
 
     void GameplayHUD::RefreshHealthBar()
@@ -48,6 +59,7 @@ namespace ly
             HealthComponent& healthComp = player->GetCurrentSpaceship().lock()->GetHealthComp(); 
             healthComp.onHealthChanged.BindAction(GetWeakRef(), &GameplayHUD::PlayerHealthUpdated);
             mPlayerHealthBar.UpdateValue(healthComp.GetHealth(), healthComp.GetMaxHealth());
+            mPlayerHealthBar.SetForegroundColor(mHealthyHealthBarColor);
         }
     }
 
