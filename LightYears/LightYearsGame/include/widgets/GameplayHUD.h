@@ -6,6 +6,7 @@
 
 namespace ly
 {
+    class Actor;
     class GameplayHUD : public HUD
     {
         public:
@@ -15,6 +16,9 @@ namespace ly
             virtual void Tick(float deltaTime)override;
         private:
             virtual void Init(const sf::RenderWindow& windowRef)override;
+            void PlayerHealthUpdated(float amt, float currentHealth, float maxHealth);
+            void RefreshHealthBar();
+            void PlayerSpaceshipDestroyed(Actor* actor);
             TextWidget mFrameRateText;
             ValueGuage mPlayerHealthBar;
     };
