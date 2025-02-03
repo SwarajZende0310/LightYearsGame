@@ -10,7 +10,9 @@ namespace ly
         mPlayerHealthBar{},
         mHealthyHealthBarColor{128,255,128,255},
         mCriticalHealthBarColor{255,0,0,255},
-        mCriticalThreshold{0.3f}
+        mCriticalThreshold{0.3f},
+        mPlayerIcon{"SpaceShooterRedux/PNG/pickups/playerLife1_blue.png"},
+        mWidgetSpacing{10.f}
     {
         mFrameRateText.SetTextSize(30);
     }
@@ -19,6 +21,7 @@ namespace ly
     {
         mFrameRateText.NativeDraw(windowRef);
         mPlayerHealthBar.NativeDraw(windowRef);
+        mPlayerIcon.NativeDraw(windowRef);
     }
 
     void GameplayHUD::Tick(float deltaTime)
@@ -32,6 +35,10 @@ namespace ly
     {
         auto windowSize = windowRef.getSize();
         mPlayerHealthBar.SetWidgetLocation(sf::Vector2f{20.f, windowSize.y - 50.f});
+
+        sf::Vector2f lifeIconPos = mPlayerHealthBar.GetWidgetLocation();
+        lifeIconPos += sf::Vector2f{ mPlayerHealthBar.GetBound().width + mWidgetSpacing, 0.f};
+        mPlayerIcon.SetWidgetLocation(lifeIconPos);
 
         RefreshHealthBar();
     }
