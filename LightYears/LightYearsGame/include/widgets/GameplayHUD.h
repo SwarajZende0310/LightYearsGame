@@ -19,13 +19,17 @@ namespace ly
             virtual void Init(const sf::RenderWindow& windowRef)override;
             void PlayerHealthUpdated(float amt, float currentHealth, float maxHealth);
             void RefreshHealthBar();
-            void ConnectPlayerLifeCount();
+            void ConnectPlayerStatus();
             void PlayerLifeCountUpdated(int amt);
+            void PlayerScoreUpdated(int newScore);
             void PlayerSpaceshipDestroyed(Actor* actor);
             TextWidget mFrameRateText;
             ValueGuage mPlayerHealthBar;
             ImageWidget mPlayerIcon;
             TextWidget mPlayerLifeText;
+
+            ImageWidget mPlayerScoreIcon;
+            TextWidget mPlayerScoreText;
 
             sf::Color mHealthyHealthBarColor;
             sf::Color mCriticalHealthBarColor;
