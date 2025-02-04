@@ -16,6 +16,7 @@ namespace ly
 
             virtual void Draw(sf::RenderWindow& windowRef)override;
             virtual void Tick(float deltaTime)override;
+            virtual bool HandleEvent(const sf::Event& event)override;
         private:
             virtual void Init(const sf::RenderWindow& windowRef)override;
             void PlayerHealthUpdated(float amt, float currentHealth, float maxHealth);
@@ -34,6 +35,8 @@ namespace ly
 
             // TODO: remove
             Button TestButton;
+            // TODO: remove
+            void TestButtonClicked();
 
             sf::Color mHealthyHealthBarColor;
             sf::Color mCriticalHealthBarColor;
