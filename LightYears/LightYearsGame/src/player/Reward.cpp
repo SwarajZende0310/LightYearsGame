@@ -61,6 +61,11 @@ namespace ly
         return CreateReward(world, "SpaceShooterRedux/PNG/pickups/front_row_shooter_pickup.png", RewardFrontalWiper);
     }
 
+    weak<Reward> CreateLifeReward(World *world)
+    {
+        return CreateReward(world, "SpaceShooterRedux/PNG/pickups/playerLife1_blue.png", RewardLife);
+    }
+
     weak<Reward> CreateReward(World *world, const std::string &texturePath, RewardFunction rewardFunction)
     {
         weak<Reward> reward = world->SpawnActor<Reward>(texturePath, rewardFunction);
@@ -90,5 +95,13 @@ namespace ly
         {
             player->SetShooter(unique<Shooter>{new FrontalWiper{player, 0.4f, {50.f, 0.f}}});
         }
+    }
+
+    void RewardLife(PlayerSpaceship *player)
+    {
+        if(!PlayerManager::Get().GetPlayer())
+            return;
+
+        PlayerManager::Get().GetPlayer()->AddLifeCount(1);
     }
 }
