@@ -34,6 +34,9 @@ namespace ly
             void AddStage(const shared<GameStage>& newStage);
 
             bool DispathEvent(const sf::Event event);
+
+            Application* GetApplication(){ return mOwningApp;}
+            const Application* GetApplication()const { return mOwningApp;}
         private:
             virtual void BeginPlay();
             virtual void Tick(float deltaTime);
