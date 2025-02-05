@@ -28,7 +28,7 @@ namespace ly
         CenterText();
     }
 
-    void Button::SetTextCharacterSize(unsigned int characterSize)
+    void Button::SetTextSize(unsigned int characterSize)
     {
         mButtonText.setCharacterSize(characterSize);
         CenterText();
@@ -44,10 +44,10 @@ namespace ly
                 if(mButtonSprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y) && mIsButtonDown)
                 {
                     onButtonClicked.Broadcast();
+                    handled = true;
                 }
             }
             ButtonUp();
-            handled = true;
         }
         else if (event.type == sf::Event::MouseButtonPressed)
         {

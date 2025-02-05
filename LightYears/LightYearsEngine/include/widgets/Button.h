@@ -12,7 +12,7 @@ namespace ly
 
             virtual sf::FloatRect GetBound() const;
             void SetTextString(const std::string& newStr);
-            void SetTextCharacterSize(unsigned int characterSize);
+            void SetTextSize(unsigned int characterSize);
             virtual bool HandleEvent(const sf::Event& event)override;
             Delegate<> onButtonClicked;
         private:
