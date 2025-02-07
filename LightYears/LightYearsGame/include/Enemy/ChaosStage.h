@@ -14,7 +14,7 @@ namespace ly
         private:
             virtual void StageFinished() override;
             void SpawnVanguard();
-            void SpawnTwinShooter();
+            void SpawnTwinBlade();
             void SpawnHexagon();
             void SpawnUFO();
 
