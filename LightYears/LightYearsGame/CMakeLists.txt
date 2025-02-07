@@ -76,6 +76,9 @@ add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/widgets/MainMenuHUD.h
     ${CMAKE_CMAKE_CURRENT_SOURCE_DIR}src/widgets/MainMenuHUD.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/ChaosStage.h
+    ${CMAKE_CMAKE_CURRENT_SOURCE_DIR}src/Enemy/ChaosStage.cpp
 )
 
 target_include_directories(${LIGHT_YEARS_GAME_TARGET_NAME} PUBLIC 
