@@ -21,6 +21,7 @@ namespace ly
                 });
             virtual void Tick(float deltaTime)override;
             void SetScoreAwardAmt(unsigned int amt); 
+            void SetrewardSpawnWeight(float weight);
         private:
             void SpawnReward();
             float mCollisionDamage;

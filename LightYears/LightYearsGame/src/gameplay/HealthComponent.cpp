@@ -38,6 +38,12 @@ namespace ly
         }
     }
 
+    void HealthComponent::SetInitialHealth(float health, float maxHealth)
+    {
+        mHealth = health;
+        mMaxHealth = maxHealth;
+    }
+
     void HealthComponent::HealthEmpty()
     {
         onHealthEmpty.Broadcast();
