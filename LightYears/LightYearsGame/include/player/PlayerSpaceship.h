@@ -5,6 +5,7 @@
 #include"weapon/BulletShooter.h"
 #include"weapon/ThreeWayShooter.h"
 #include"weapon/FrontalWiper.h"
+#include"framework/TimerManager.h"
 
 namespace ly
 {
@@ -21,15 +22,28 @@ namespace ly
 
         void SetShooter(unique<Shooter>&& newShooter);
 
+        virtual void ApplyDamage(float amt)override;
+        virtual void BeginPlay()override;
+
     private:
         void HandleInput();
         void NormalizeInput();
         void ClampInputOnEdge();
         void ConsumeInput(float deltaTime);
+        void StopInvulnerable();
+        void UpdateInvulnerbale(float deltaTime);
         sf::Vector2f mMoveInput;
         float mSpeed;
 
         unique<Shooter> mShooter;
+
+        float mInvulnerableTime;
+        TimerHandle mInvulnerableTimerHandle;
+        bool mInvulnerable; 
+
+        float mInvulnerableFlashInterval;
+        float mInvulnerableFlashTimer;
+        float mInvulnerableFlashDir;
     };
     
 }
