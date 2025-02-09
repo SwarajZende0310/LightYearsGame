@@ -15,6 +15,8 @@ namespace ly
 
             static PlayerManager& Get();
 
+            void Reset();
+
         protected:
             PlayerManager();
             
