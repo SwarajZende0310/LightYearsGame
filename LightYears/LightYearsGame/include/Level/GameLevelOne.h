@@ -19,6 +19,9 @@ namespace ly
 
             virtual void InitGameStages() override;
 
+            void QuitGame();
+            void RestartGame();
             void GameOver();
+            virtual void AllGameStageFinished() override;
     };
 }
