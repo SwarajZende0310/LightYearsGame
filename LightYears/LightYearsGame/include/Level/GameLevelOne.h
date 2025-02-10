@@ -23,5 +23,6 @@ namespace ly
             void RestartGame();
             void GameOver();
             virtual void AllGameStageFinished() override;
+            void SpawnCosmetics();
     };
 }
