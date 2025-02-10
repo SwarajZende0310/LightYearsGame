@@ -25,6 +25,7 @@ namespace ly
             shared<sf::Texture> newTexture = AssetManager::Get().LoadTexture(texturePath);
             mTextures.push_back(newTexture);
         }
+        RefreshSprites();
     }
 
     void BackgroundLayer::RefreshSprites()
@@ -88,6 +89,24 @@ namespace ly
         sprite.setScale(size,size);
     }
 
+    bool BackgroundLayer::IsSpriteOffScreen(sf::Sprite &sprite) const
+    {
+        auto bound = sprite.getGlobalBounds();
+        auto windowSize = GetWorld()->GetWindowSize();
+        auto spritePos = sprite.getPosition();
+        
+        if(spritePos.x < -bound.width || spritePos.x > windowSize.x + bound.width)
+        {
+            return true;
+        }
+        if(spritePos.y < -bound.height || spritePos.y > windowSize.y + bound.height)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     void BackgroundLayer::SetColorTint(sf::Color &color)
     {
         mTintColor = color;
@@ -101,6 +120,56 @@ namespace ly
     {
         mSpriteCount = newCount;
         RefreshSprites();
+    }
+
+    void BackgroundLayer::SetVelocities(const sf::Vector2f &min, const sf::Vector2f &max)
+    {
+        mMinVelocity = min;
+        mMaxVelocity = max;
+
+        for(int i = 0; i < mVelocities.size(); ++i)
+        {
+            float velX = RandomRange(mMinVelocity.x, mMaxVelocity.x);
+            float velY = RandomRange(mMinVelocity.y, mMaxVelocity.y);
+            mVelocities[i] = sf::Vector2f{velX, velY}; 
+        }
+    }
+
+    void BackgroundLayer::SetSizes(float min, float max)
+    {
+        mSizeMin = min;
+        mSizeMax = max;
+
+        for(int i = 0; i < mSprites.size(); ++i)
+        {
+            RandomSpriteSize(mSprites[i]);
+        }
+    }
+
+    void BackgroundLayer::Render(sf::RenderWindow &windowRef)
+    {
+        Actor::Render(windowRef);
+        for(const sf::Sprite& sprite : mSprites)
+        {
+            windowRef.draw(sprite);
+        }
+    }
+
+    void BackgroundLayer::Tick(float deltaTime)
+    {
+        Actor::Tick(deltaTime);
+        for(int i = 0; i < mSprites.size(); ++i)
+        {
+            sf::Sprite& sprite = mSprites[i];
+            sf::Vector2f& vel = mVelocities[i];
+
+            sprite.setPosition(sprite.getPosition() + vel * deltaTime);
+
+            if(IsSpriteOffScreen(sprite)) 
+            {
+                RandomSpriteTransform(sprite);
+            }
+        }
     }
 
     shared<sf::Texture> BackgroundLayer::GetRandomTexture() const
