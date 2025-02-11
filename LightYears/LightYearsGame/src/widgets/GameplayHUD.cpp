@@ -31,6 +31,14 @@ namespace ly
         mFinalScoreText.SetVisibility(false);
         mRestartButton.SetVisibility(false);
         mQuitButton.SetVisibility(false);
+
+        mPauseButtonColor.buttonDefaultColor = sf::Color{255, 128, 128, 255};
+        mPauseButtonColor.buttonDownColor = sf::Color{128, 100, 100, 255};
+        mPauseButtonColor.buttonHoverColor = sf::Color{255, 180, 180, 255};
+
+        mResumeButtonColor.buttonDefaultColor = sf::Color{128, 255, 128, 255};
+        mResumeButtonColor.buttonDownColor = sf::Color{100, 128, 100, 255};
+        mResumeButtonColor.buttonHoverColor = sf::Color{180, 255, 180, 255};
     }
 
     void GameplayHUD::Draw(sf::RenderWindow &windowRef)
@@ -96,6 +104,7 @@ namespace ly
         mQuitButton.SetWidgetLocation(mRestartButton.GetWidgetLocation() + sf::Vector2f{0.f,50.f});
 
         mPauseButton.SetWidgetLocation({windowSize.x - mPauseButton.GetBound().width, mPauseButton.GetBound().height/2.f -  5.f});
+        mPauseButton.SetColor(mPauseButtonColor);
 
         mRestartButton.onButtonClicked.BindAction(GetWeakRef(), &GameplayHUD::RestartButtonClicked);
         mQuitButton.onButtonClicked.BindAction(GetWeakRef(), &GameplayHUD::QuitButtonClicked);
@@ -170,6 +179,20 @@ namespace ly
     void GameplayHUD::PauseButtonClicked()
     {
         OnPauseButtonClicked.Broadcast();
+    }
+
+    void GameplayHUD::UpdatePauseButton(bool paused)
+    {
+        if(paused)
+        {
+            mPauseButton.SetTextString("Resume");
+            mPauseButton.SetColor(mResumeButtonColor);
+        }
+        else
+        {
+            mPauseButton.SetTextString("Pause");
+            mPauseButton.SetColor(mPauseButtonColor);
+        }
     }
 
     void GameplayHUD::GameFinsihed(bool playerWon)

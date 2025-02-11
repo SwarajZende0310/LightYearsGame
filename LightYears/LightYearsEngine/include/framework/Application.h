@@ -24,6 +24,7 @@ namespace ly
 
             void QuitApplication();
             void PlayPauseGame();
+            bool IsGamePaused(){return mPlayPauseGame;}
         private:
             bool DispathEvent(const sf::Event& event);
             void TickInternal(float deltaTime);

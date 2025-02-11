@@ -5,6 +5,13 @@
 
 namespace ly
 {
+    struct ButtonColor
+    {
+        sf::Color buttonDefaultColor;
+        sf::Color buttonDownColor;
+        sf::Color buttonHoverColor;
+    };
+
     class Button : public Widget
     {
         public:
@@ -12,6 +19,8 @@ namespace ly
 
             virtual sf::FloatRect GetBound() const;
             void SetTextString(const std::string& newStr);
+            std::string GetTextString()const;
+            void SetColor(const ButtonColor& newColor);
             void SetTextSize(unsigned int characterSize);
             virtual bool HandleEvent(const sf::Event& event)override;
             Delegate<> onButtonClicked;
@@ -28,9 +37,7 @@ namespace ly
             shared<sf::Font> mButtonFont;
             sf::Text mButtonText;
 
-            sf::Color mButtonDefaultColor;
-            sf::Color mButtonDownColor;
-            sf::Color mButtonHoverColor;
+            ButtonColor mButtonColor;
 
             bool mIsButtonDown;
 

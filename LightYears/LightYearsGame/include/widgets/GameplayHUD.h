@@ -17,6 +17,7 @@ namespace ly
             virtual void Draw(sf::RenderWindow& windowRef)override;
             virtual void Tick(float deltaTime)override;
             virtual bool HandleEvent(const sf::Event& event)override;
+            void UpdatePauseButton(bool paused);
             
             void GameFinsihed(bool playerWon);
             Delegate<> OnRestartButtonClicked;
@@ -55,5 +56,7 @@ namespace ly
             sf::Vector2u mWindowSize;
 
             Button mPauseButton;
+            ButtonColor mPauseButtonColor;
+            ButtonColor mResumeButtonColor;
     };
 }

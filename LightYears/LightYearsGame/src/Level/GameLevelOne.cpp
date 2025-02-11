@@ -94,6 +94,7 @@ namespace ly
     void GameLevelOne::PauseGame()
     {
         GetApplication()->PlayPauseGame();
+        mGameplayHUD.lock()->UpdatePauseButton(GetApplication()->IsGamePaused());
     }
 
     void GameLevelOne::AllGameStageFinished()

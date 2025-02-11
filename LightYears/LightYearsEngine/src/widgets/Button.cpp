@@ -8,12 +8,12 @@ namespace ly
         mButtonSprite{*(mButtonTexture.get())},
         mButtonFont{AssetManager::Get().LoadFont("SpaceShooterRedux/Bonus/kenvector_future.ttf")},
         mButtonText{textString, *(mButtonFont.get())},
-        mButtonDefaultColor{128, 128, 128, 255},
-        mButtonDownColor{64, 64, 64, 255},
-        mButtonHoverColor{190, 190, 190, 255},
         mIsButtonDown{false}
     {
-        mButtonSprite.setColor(mButtonDefaultColor);
+        mButtonColor.buttonDefaultColor = sf::Color{128, 128, 128, 255};
+        mButtonColor.buttonDownColor = sf::Color{64, 64, 64 , 255};
+        mButtonColor.buttonHoverColor = sf::Color{190, 190, 190, 255};
+        SetColor(mButtonColor);
         CenterText();
     }
 
@@ -26,6 +26,17 @@ namespace ly
     {
         mButtonText.setString(newStr);
         CenterText();
+    }
+
+    std::string Button::GetTextString() const
+    {
+        return mButtonText.getString();
+    }
+
+    void Button::SetColor(const ButtonColor &newColor)
+    {
+        mButtonColor = newColor;
+        mButtonSprite.setColor(newColor.buttonDefaultColor);
     }
 
     void Button::SetTextSize(unsigned int characterSize)
@@ -104,17 +115,17 @@ namespace ly
     void Button::ButtonUp()
     {
         mIsButtonDown = false;
-        mButtonSprite.setColor(mButtonDefaultColor);
+        mButtonSprite.setColor(mButtonColor.buttonDefaultColor);
     }
 
     void Button::ButtonDown()
     {
         mIsButtonDown = true;
-        mButtonSprite.setColor(mButtonDownColor);
+        mButtonSprite.setColor(mButtonColor.buttonDownColor);
     }
 
     void Button::MouseHovered()
     {
-        mButtonSprite.setColor(mButtonHoverColor);
+        mButtonSprite.setColor(mButtonColor.buttonHoverColor);
     }
 }
