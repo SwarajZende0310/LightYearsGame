@@ -21,6 +21,7 @@ namespace ly
             void GameFinsihed(bool playerWon);
             Delegate<> OnRestartButtonClicked;
             Delegate<> OnQuitButtonClicked;
+            Delegate<> OnPauseButtonClicked;
         private:
             virtual void Init(const sf::RenderWindow& windowRef)override;
             void PlayerHealthUpdated(float amt, float currentHealth, float maxHealth);
@@ -31,6 +32,7 @@ namespace ly
             void PlayerSpaceshipDestroyed(Actor* actor);
             void RestartButtonClicked();
             void QuitButtonClicked();
+            void PauseButtonClicked();
             TextWidget mFrameRateText;
             ValueGuage mPlayerHealthBar;
             ImageWidget mPlayerIcon;
@@ -51,5 +53,7 @@ namespace ly
             Button mQuitButton;
 
             sf::Vector2u mWindowSize;
+
+            Button mPauseButton;
     };
 }

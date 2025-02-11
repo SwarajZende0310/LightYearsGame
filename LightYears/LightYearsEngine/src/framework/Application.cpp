@@ -8,7 +8,8 @@ namespace ly
         mTickClock(),
         mCurrentWorld(nullptr),
         mCleanCycleClock{},
-        mCleanCycleInerval{2.f}
+        mCleanCycleInerval{2.f},
+        mPlayPauseGame{false}
     {
         
     }
@@ -57,6 +58,11 @@ namespace ly
         mWindow.close();
     }
 
+    void Application::PlayPauseGame()
+    {
+        mPlayPauseGame = !mPlayPauseGame;
+    }
+
     bool Application::DispathEvent(const sf::Event &event)
     {
         if(mCurrentWorld)
@@ -68,6 +74,8 @@ namespace ly
 
     void Application::TickInternal(float deltaTime) 
     {
+        if(mPlayPauseGame)return;
+
         Tick(deltaTime);
 
         if(mCurrentWorld)

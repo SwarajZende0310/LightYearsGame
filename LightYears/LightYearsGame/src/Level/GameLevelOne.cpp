@@ -37,6 +37,7 @@ namespace ly
 
         mGameplayHUD.lock()->OnQuitButtonClicked.BindAction(GetWeakRef(), &GameLevelOne::QuitGame);
         mGameplayHUD.lock()->OnRestartButtonClicked.BindAction(GetWeakRef(), &GameLevelOne::RestartGame);
+        mGameplayHUD.lock()->OnPauseButtonClicked.BindAction(GetWeakRef(), &GameLevelOne::PauseGame);
     }
 
     void GameLevelOne::PlayerSpaceShipDestroyed(Actor *destroyedPlayerSpaceship)
@@ -90,6 +91,11 @@ namespace ly
         // Player Died in between some stage and lost 
         mGameplayHUD.lock()->GameFinsihed(false);
     }
+    void GameLevelOne::PauseGame()
+    {
+        GetApplication()->PlayPauseGame();
+    }
+
     void GameLevelOne::AllGameStageFinished()
     {
         // All Game stages done player WON

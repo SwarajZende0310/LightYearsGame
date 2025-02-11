@@ -20,7 +20,8 @@ namespace ly
         mFinalScoreText{""},
         mRestartButton{"Restart"},
         mQuitButton{"Quit"},
-        mWindowSize{}
+        mWindowSize{},
+        mPauseButton{"Pause"}
     {
         mFrameRateText.SetTextSize(30);
         mPlayerLifeText.SetTextSize(20);
@@ -45,6 +46,7 @@ namespace ly
         mFinalScoreText.NativeDraw(windowRef);
         mRestartButton.NativeDraw(windowRef);
         mQuitButton.NativeDraw(windowRef);
+        mPauseButton.NativeDraw(windowRef);
     }
 
     void GameplayHUD::Tick(float deltaTime)
@@ -58,6 +60,7 @@ namespace ly
     {
         if(mRestartButton.HandleEvent(event))return true;
         if(mQuitButton.HandleEvent(event))return true;
+        if(mPauseButton.HandleEvent(event))return true;
         return HUD::HandleEvent(event);
     }
 
@@ -92,8 +95,11 @@ namespace ly
         mRestartButton.SetWidgetLocation({windowSize.x/2.f - mRestartButton.GetBound().width/2.f, windowSize.y/2.f});
         mQuitButton.SetWidgetLocation(mRestartButton.GetWidgetLocation() + sf::Vector2f{0.f,50.f});
 
+        mPauseButton.SetWidgetLocation({windowSize.x - mPauseButton.GetBound().width, mPauseButton.GetBound().height/2.f -  5.f});
+
         mRestartButton.onButtonClicked.BindAction(GetWeakRef(), &GameplayHUD::RestartButtonClicked);
         mQuitButton.onButtonClicked.BindAction(GetWeakRef(), &GameplayHUD::QuitButtonClicked);
+        mPauseButton.onButtonClicked.BindAction(GetWeakRef(), &GameplayHUD::PauseButtonClicked);
     }
 
     void GameplayHUD::PlayerHealthUpdated(float amt, float currentHealth, float maxHealth)
@@ -159,6 +165,11 @@ namespace ly
     void GameplayHUD::QuitButtonClicked()
     {
         OnQuitButtonClicked.Broadcast();
+    }
+
+    void GameplayHUD::PauseButtonClicked()
+    {
+        OnPauseButtonClicked.Broadcast();
     }
 
     void GameplayHUD::GameFinsihed(bool playerWon)

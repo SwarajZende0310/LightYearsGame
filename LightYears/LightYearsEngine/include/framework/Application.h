@@ -23,6 +23,7 @@ namespace ly
             const sf::RenderWindow& GetWindow() const { return mWindow; }
 
             void QuitApplication();
+            void PlayPauseGame();
         private:
             bool DispathEvent(const sf::Event& event);
             void TickInternal(float deltaTime);
@@ -39,6 +40,8 @@ namespace ly
             shared<World> mPendingWorld;
             sf::Clock mCleanCycleClock;
             float mCleanCycleInerval;
+
+            bool mPlayPauseGame;
     };
 
     template<typename worldType>
