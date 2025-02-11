@@ -4,8 +4,8 @@
 std::string GetResourceDir()
 {
     #ifdef NDEBUG //release build
-        return"assets/";
+        return "@RESOURCE_FOLDER_NAME@/";
     #else
-        return"/home/swarajzende/dev/LightYears/LightYearsGame/assets/";
+        return "@RESOURCE_SRC_DIR@/";
     #endif
 }

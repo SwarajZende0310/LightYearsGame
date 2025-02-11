@@ -4,8 +4,8 @@
 std::string GetResourceDir()
 {
     #ifdef NDEBUG //release build
-        return"assets/";
+        return "assets/";
     #else
-        return"/home/swarajzende/dev/LightYears/LightYearsGame/assets/";
+        return "/home/swarajzende/dev/LightYears/LightYearsGame/assets/";
     #endif
 }
