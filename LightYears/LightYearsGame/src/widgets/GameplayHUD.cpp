@@ -187,11 +187,15 @@ namespace ly
         {
             mPauseButton.SetTextString("Resume");
             mPauseButton.SetColor(mResumeButtonColor);
+            mRestartButton.SetVisibility(true);
+            mQuitButton.SetVisibility(true);
         }
         else
         {
             mPauseButton.SetTextString("Pause");
             mPauseButton.SetColor(mPauseButtonColor);
+            mRestartButton.SetVisibility(false);
+            mQuitButton.SetVisibility(false);
         }
     }
 

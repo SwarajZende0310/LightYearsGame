@@ -50,6 +50,7 @@ namespace ly
     {
         shared<worldType> newWorld{new worldType{this}};
         mPendingWorld = newWorld;
+        mPlayPauseGame = false; //Resuming the Game to Allow Tick to work and restart game
         return newWorld;
     }
 }
