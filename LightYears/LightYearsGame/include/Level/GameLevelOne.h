@@ -15,7 +15,6 @@ namespace ly
             void PlayerSpaceShipDestroyed(Actor* destroyedPlayerSpaceship);
             weak<PlayerSpaceship> mPlayerSpaceship;
             weak<GameplayHUD> mGameplayHUD;
-            TimerHandle timerHandle_test;
 
             virtual void InitGameStages() override;
 
