@@ -4,7 +4,7 @@ namespace ly
 {
     Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string & title,sf::Uint32 style)
         :mWindow(sf::VideoMode({windowWidth, windowHeight}), title, style),
-        mTargetFrameRate(60.f),
+        mTargetFrameRate(120.f),
         mTickClock(),
         mCurrentWorld(nullptr),
         mCleanCycleClock{},
